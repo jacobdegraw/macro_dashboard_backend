@@ -1,2 +1,58 @@
-config.yml
+# ======================
+# Python
+# ======================
+__pycache__/
+*.py[cod]
+*.pyo
+
+# virtual environments
+.venv/
+venv/
+
+# packaging artifacts
+*.egg-info/
+dist/
+build/
+
+# ======================
+# Jupyter / scratch
+# ======================
+.ipynb_checkpoints/
 scratch/
+
+# ======================
+# Environment / secrets
+# ======================
+.env
+.env.*
+config.yml
+
+# ======================
+# OS / editor junk
+# ======================
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# ======================
+# Logs
+# ======================
+*.log
+
+# ======================
+# Test artifacts
+# ======================
+.coverage
+htmlcov/
+.pytest_cache/
+
+# ======================
+# AWS / Infra
+# ======================
+.aws/
+cdk.out/
+terraform.tfstate
+terraform.tfstate.*
+.terraform/
