@@ -1,0 +1,16 @@
+pydantic>=2.6
+pydantic-settings>=2.2
+requests>=2.31
+pandas>=2.2
+pymongo>=4.6
+pyyaml>=6.0.1
+
+[api]
+fastapi>=0.110
+uvicorn[standard]>=0.27
+
+[dev]
+pytest>=8
+ruff>=0.4
+mypy>=1.8
+types-requests

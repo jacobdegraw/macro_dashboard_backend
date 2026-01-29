@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "macro-dashboard-backend"
+version = "0.1.0"
+description = "Backend for macro dashboard (ingestion jobs + API)"
+readme = "README.md"
+requires-python = ">=3.12"
+
+dependencies = [
+  # settings + models
+  "pydantic>=2.6",
+  "pydantic-settings>=2.2",
+
+  # data + http
+  "requests>=2.31",
+  "pandas>=2.2",
+
+  # MongoDB
+  "pymongo>=4.6",
+
+  # local-only config (can remove later)
+  "pyyaml>=6.0.1",
+]
+
+[project.optional-dependencies]
+api = [
+  "fastapi>=0.110",
+  "uvicorn[standard]>=0.27",
+]
+
+dev = [
+  "pytest>=8",
+  "ruff>=0.4",
+  "mypy>=1.8",
+  "types-requests",
+]
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["macro_dashboard*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]

@@ -1,0 +1,23 @@
+Metadata-Version: 2.4
+Name: macro-dashboard-backend
+Version: 0.1.0
+Summary: Backend for macro dashboard (ingestion jobs + API)
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+Requires-Dist: pydantic>=2.6
+Requires-Dist: pydantic-settings>=2.2
+Requires-Dist: requests>=2.31
+Requires-Dist: pandas>=2.2
+Requires-Dist: pymongo>=4.6
+Requires-Dist: pyyaml>=6.0.1
+Provides-Extra: api
+Requires-Dist: fastapi>=0.110; extra == "api"
+Requires-Dist: uvicorn[standard]>=0.27; extra == "api"
+Provides-Extra: dev
+Requires-Dist: pytest>=8; extra == "dev"
+Requires-Dist: ruff>=0.4; extra == "dev"
+Requires-Dist: mypy>=1.8; extra == "dev"
+Requires-Dist: types-requests; extra == "dev"
+
+# macro_dashboard
+I make a dashboard
