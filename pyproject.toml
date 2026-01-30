@@ -40,10 +40,12 @@ dev = [
 
 [tool.setuptools]
 package-dir = { "" = "src" }
+include-package-data = false
 
 [tool.setuptools.packages.find]
 where = ["src"]
-include = ["macro_dashboard*"]
+namespaces = false
+include = ["macro_dashboard", "macro_dashboard.*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
