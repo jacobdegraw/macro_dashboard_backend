@@ -1,6 +1,7 @@
-from datetime import date
-from pydantic import BaseModel, StringConstraints
+from datetime import datetime, date
+from pydantic import BaseModel, StringConstraints, Field, field_validator
 from typing_extensions import Annotated
+import re
 from typing import List
 import pandas as pd
 
@@ -11,7 +12,7 @@ FrequencyCode = Annotated[
 ]
 
 class Series(BaseModel):
-    series_id: str
+    series_id: str = Field(alias = "id")
     title: str
     observation_start: date
     observation_end: date
@@ -23,9 +24,29 @@ class Series(BaseModel):
 
     # TODO: Make this an enum instead of string?
     seasonal_adjustment_short: str
-    last_updated: date
+    last_updated: datetime
     popularity: int
     notes: str
+
+    @field_validator("last_updated", mode="before")
+    @classmethod
+    def parse_fred_last_updated(cls, v):
+        """
+        FRED sometimes returns: 'YYYY-MM-DD HH:MM:SS-06'
+        Normalize to ISO 8601:  'YYYY-MM-DDTHH:MM:SS-06:00'
+        """
+        if isinstance(v, datetime):
+            return v
+        if isinstance(v, str):
+            s = v.strip().replace(" ", "T", 1)
+
+            # If timezone is like -06 or +05, add :00
+            # Matches trailing ±HH at end of string
+            if re.search(r"[+-]\d{2}$", s):
+                s = s + ":00"
+
+            return s
+        return v
 
 
 
