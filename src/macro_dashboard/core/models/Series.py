@@ -27,6 +27,7 @@ class Series(BaseModel):
     last_updated: datetime
     popularity: int
     notes: str
+    pull_date: datetime = Field(default=datetime.now())
 
     @field_validator("last_updated", mode="before")
     @classmethod

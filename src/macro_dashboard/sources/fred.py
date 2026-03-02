@@ -229,7 +229,7 @@ class Fred:
         """
         Pull all release dates
         """
-        data = self._client.get_json("/releases/dates")
+        data = self._client.get_json("/releases/dates", {})
 
         try:
             return ReleaseDateCollection.from_fred_payload(payload = data)

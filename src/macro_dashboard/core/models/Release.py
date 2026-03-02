@@ -1,5 +1,5 @@
 # TODO: add updateddate or smth
-from datetime import date
+from datetime import datetime
 from pydantic import BaseModel
 from typing import List, Optional
 import pandas as pd
@@ -8,7 +8,7 @@ class Release(BaseModel):
     id: int
     name: str
     press_release: bool
-    pull_date: date
+    pull_date: datetime
     # TODO: make sure this is robust
     link: Optional[str]
     note: Optional[str]
@@ -18,12 +18,12 @@ class ReleaseCollection(BaseModel):
     release_list: List[Release]
 
     @classmethod
-    def from_fred_payload(cls, *, payload: dict, pull_date: Optional[date] = None) -> "ReleaseCollection":
+    def from_fred_payload(cls, *, payload: dict, pull_date: Optional[datetime] = None) -> "ReleaseCollection":
         """
         Convert a FRED 'releases' JSON payload into a ReleaseCollection
         """
         if pull_date is None:
-            pull_date = date.today()
+            pull_date = datetime.now()
 
         releases = []
 
