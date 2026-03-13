@@ -52,7 +52,7 @@ class TrackedSeriesRepository:
             SELECT 1
             FROM tracked_series
             WHERE series_id = :series_id
-                    Limit 1
+            LIMIT 1
         """)
 
         result = self.session.execute(

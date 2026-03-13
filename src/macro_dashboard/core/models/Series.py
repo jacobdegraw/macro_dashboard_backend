@@ -1,5 +1,5 @@
 from datetime import datetime, date
-from pydantic import BaseModel, StringConstraints, Field, field_validator
+from pydantic import BaseModel, StringConstraints, ConfigDict, Field, field_validator
 from typing_extensions import Annotated
 import re
 from typing import List
@@ -12,6 +12,8 @@ FrequencyCode = Annotated[
 ]
 
 class Series(BaseModel):
+    model_config = ConfigDict(validate_by_name=True, validate_by_alias=True)
+
     series_id: str = Field(alias = "id")
     title: str
     observation_start: date
